@@ -50,11 +50,12 @@ if (databaseEnv == "development") {
 if (databaseEnv == "production") {
     console.log('connecting to Atlas Production Database')
 
+    const username = process.env.ATLAS_USERNAME
     const databaseName = process.env.ATLAS_DATABASE_NAME
     const atlasPassword = process.env.ATLAS_PASSWORD
 
     const MongoClient = require('mongodb').MongoClient;
-    const uri = `mongodb+srv://johnmerritt95:<${atlasPassword}@cluster0.pl1wx.gcp.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${username}:<${atlasPassword}@cluster0.pl1wx.gcp.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     client.connect(err => {
       const collection = client.db("tutorial").collection("students");
