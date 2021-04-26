@@ -29,7 +29,7 @@ if (databaseEnv == "development") {
     const url = 'mongodb://localhost:27017';
 
     // Database Name
-    const dbName = 'myproject';
+    const dbName = 'EMA';
     const client = new MongoClient(url, { useUnifiedTopology: true });
 
     // Use connect method to connect to the server
@@ -38,6 +38,8 @@ if (databaseEnv == "development") {
         console.log('Connected successfully to server');
 
         const db = client.db(dbName);
+
+        console.log(db.listCollections())
         
         client.close();
     });
